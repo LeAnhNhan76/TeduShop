@@ -1,0 +1,23 @@
+﻿{
+  "ProductCategoryName": "Tên danh mục",
+  "AddProductCategory": "Thêm mới danh mục",
+  "Alias": "Tiêu đề SEO",
+  "Description": "Mô tả ngắn",
+  "ParentCategory": "Danh mục cha",
+  "ParentOriginal": "Danh mục gốc",
+  "DisplayOrder": "Thứ tự",
+  "Image": "Hình ảnh",
+  "MetaKeyword": "Meta Keyword",
+  "MetaDescription": "Meta Description",
+  "Enabled": "Kích hoạt",
+  "DisplayOnHome": "Hiển thị trang chủ",
+  "EditProductCategory": "Cập nhật danh mục",
+  "ProductCategoryNameIsRequired": "Tên danh mục không được để trống",
+  "ProductCategoryNameIsOnly250CharsLong": "Tên danh mục chỉ dài tối đa 250 kí tự",
+  "AliasIsOnly250CharsLong": "Tiêu đề SEO chỉ dài tối đa 250 kí tự",
+  "DescriptionIsOnly500CharsLong": "Mô tả ngắn chỉ dài tối đa 500 kí tự",
+  "MetaKeywordIsOnly250CharsLong": "Meta Keyword chỉ dài tối đa 250 kí tự",
+  "MetaDescriptionIsOnly250CharsLong": "Meta Description chỉ dài tối đa 250 kí tự",
+  "AliasIsRequired": "Tiêu đề SEO không được để trống",
+  "OrderIsRequired": "Thứ tự không được để trống"
+}

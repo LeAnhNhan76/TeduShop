@@ -1,0 +1,70 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@using BotDetect.Web.Mvc
+@model TeduShop.Web.Models.FeedbackViewModel
+
+@{
+    ViewBag.Title = Constant.Title_Contact;
+    Layout = Constant.View_Layouts;
+}
+@section footerJS{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk3Eeu6MXm1Y6qil2hO6j89kckY5nnSTo"></script>
+    <script src="~/Assets/client/js/controllers/contact.js"></script>
+}
+<style>
+    #map {
+        height: 400px;
+    }
+</style>
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+<input type="hidden" id="hidAddress" value="@Model.ContactDetail.Name<br />@ResourceManagement.GetResourceText(Constant.Resource_Mobile):@Model.ContactDetail.Phone <br>@ResourceManagement.GetResourceText(Constant.Resource_Address): @Model.ContactDetail.Address" />
+<input type="hidden" id="hidLat" value="@Model.ContactDetail.Lat" />
+<input type="hidden" id="hidLng" value="@Model.ContactDetail.Lng" />
+<input type="hidden" id="hidName" value="@Model.ContactDetail.Name" />
+<div class="main">
+    <div class="reservation_top">
+        <div class="contact_right">
+            <h3>@ResourceManagement.GetResourceText(Constant.Resource_ContactInformation)</h3>
+            <address class="address">
+                <p>@Model.ContactDetail.Address</p>
+                <dl>
+                    <dt> </dt>
+                    <dd>@ResourceManagement.GetResourceText(Constant.Resource_Mobile):<span> @Model.ContactDetail.Phone</span></dd>
+                    <dd>E-mail:&nbsp; <a href="mailto:@(Model.ContactDetail.Email)">@(Model.ContactDetail.Email)</a></dd>
+                </dl>
+            </address>
+            <div class="clearfix"></div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <div class="reservation_top">
+        <div class="contact_right">
+            <h3>@ResourceManagement.GetResourceText(Constant.Resource_ContactForm)</h3>
+            <div class="contact-form">
+                @using (Html.BeginForm(Constant.Action_SendFeedback, Constant.Controller_Contact, FormMethod.Post))
+                {
+                    if (ViewData[Constant.ViewData_SuccessMsg] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <strong>@ResourceManagement.GetResourceText(Constant.Resource_Congratulations)! </strong> @ResourceManagement.GetResourceText(Constant.Resource_SendFeedbackSuccess).
+                            <br />@ResourceManagement.GetResourceText(Constant.Resource_ContactAsSoonAsWell).
+                        </div>
+                    }
+                    @Html.ValidationSummary(false, "", new { @class = "error" });
+                    @Html.TextBoxFor(model => model.Name, new { @placeholder=ResourceManagement.GetResourceText(Constant.Resource_YourName) + "...", @class = "textbox" });
+                    @Html.TextBoxFor(model => model.Email, new { @placeholder = ResourceManagement.GetResourceText(Constant.Resource_YourEmail) + "...", @class = "textbox" });
+                    @Html.TextAreaFor(model => model.Message , new { @placeholder = ResourceManagement.GetResourceText(Constant.Resource_Description) + "..." });
+
+
+                    MvcCaptcha contactCaptcha = new MvcCaptcha(Constant.ContactCaptcha);
+                        @Html.Captcha(contactCaptcha)
+                        @Html.TextBox(Constant.CaptchaCode)
+
+                    <input type="submit" value="@ResourceManagement.GetResourceText(Constant.Resource_Send)">
+                    <div class="clearfix"> </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

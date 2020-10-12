@@ -1,0 +1,10 @@
+﻿{
+  "ApplicationRole": "Application role",
+  "RoleName": "Role name",
+  "Description": "Description",
+  "AddUserRole": "Add user role",
+  "EditUserRole": "Edit user role",
+  "RoleNameIsRequired": "Role name is required",
+  "RoleNameIsOnly250CharsLong": "Role name is only 250 chars long",
+  "DescriptionIsOnly250CharsLong": "Description is only 250 chars long"
+}

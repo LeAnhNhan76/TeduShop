@@ -1,0 +1,158 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{resourcePage.AddProduct}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a ui-sref="home">{{resourceShared.Home}}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">{{resourceShared.Product}}</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="products">{{resourceShared.List}}</a></li>
+                    <li class="breadcrumb-item active">{{resourceShared.Add}}</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- /.card -->
+    <!-- Horizontal Form -->
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">{{resourceShared.Add}}</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddProduct" role="form" ng-submit="onAddProduct()">
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.ProductName}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" required ng-maxlength="250" ng-change="onGetSeoTitle()" ng-model="product.Name" placeholder="{{resourcePage.ProductName}}">
+                        <span ng-show="frmAddProduct.name.$error.required" class="text-danger text-error-validation">{{resourcePage.ProductNameIsRequired}}</span>
+                        <span ng-show="frmAddProduct.name.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.ProductNameIsOnly250CharsLong}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Alias}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="alias" required ng-maxlength="250" ng-model="product.Alias" placeholder="{{resourcePage.Alias}}">
+                        <span ng-show="frmAddProduct.alias.$error.required" class="text-danger text-error-validation">{{resourcePage.AliasIsRequired}}</span>
+                        <span ng-show="frmAddProduct.alias.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.AliasIsOnly250CharsLong}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Description}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description" ng-maxlength="500" ng-model="product.Description" placeholder="{{resourcePage.Description}}">
+                        <span ng-show="frmAddProduct.description.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.DescriptionIsOnly500CharsLong}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourceShared.ProductCategory}}</label>
+                    <div class="col-sm-10">
+                        <select name="categoryId" class="custom-select" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories"></select>
+                        <input type="hidden" name="categoryId" ng-model="product.CategoryID" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Price}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="price" required ng-model="product.Price" placeholder="{{resourcePage.Price}}">
+                        <span ng-show="frmAddProduct.price.$error.required" class="text-danger text-error-validation">{{resourcePage.PriceIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Promotion}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="promotion" ng-model="product.Promotion" placeholder="{{resourcePage.Promotion}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Quantity}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="quantity" ng-model="product.Quantity" placeholder="{{resourcePage.Quantity}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Warranty}} ({{resourceShared.Month}})</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="warranty" ng-model="product.Warranty" placeholder="{{resourcePage.Warranty}}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Content}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" ckeditor="ckeditorOptions" ng-model="product.Content" placeholder="{{resourcePage.Content}}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Image}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="image" ng-model="product.Image" placeholder="{{resourcePage.Image}}">
+                        <button type="button" class="btn btn-default" ng-click="onChooseImage()">{{resourceShared.ChooseImage}}</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.AddImage}}</label>
+                    <div class="col-sm-10">
+                        <ul class="list-inline">
+                            <li ng-repeat="img in moreImages" class="list-inline-item"><img src="{{img}}" width="100" /></li>
+                        </ul>
+                        <button type="button" class="btn btn-default" ng-click="onChooseMoreImage()">{{resourceShared.ChooseImage}}</button>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Tags}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="tags" ng-model="product.Tags" placeholder="{{resourcePage.Tags}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.MetaKeyword}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="metakeyword" ng-maxlength="250" ng-model="product.MetaKeyword" placeholder="{{resourcePage.MetaKeyword}}">
+                        <span ng-show="frmAddProduct.metakeyword.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.MetaKeywordIsOnly250CharsLong}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.MetaDescription}}</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" class="form-control" name="metadescription" ng-maxlength="250" ng-model="product.MetaDescription" placeholder="{{resourcePage.MetaDescription}}"></textarea>
+                        <span ng-show="frmAddProduct.metadescription.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.MetaDescriptionIsOnly250CharsLong}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="status" ng-model="product.Status" ng-checked="product.Status">
+                            <label class="form-check-label" for="exampleCheck2">{{resourcePage.Enabled}}</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag">
+                            <label class="form-check-label" for="exampleCheck2">{{resourcePage.DisplayOnHome}}</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag">
+                            <label class="form-check-label" for="exampleCheck2">{{resourcePage.HotProduct}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button ui-sref="product_categories" class="btn btn-default">{{resourceShared.Cancel}}</button>
+                <button type="submit" ng-disabled="frmAddProduct.$invalid" class="btn btn-success float-right">{{resourceShared.Save}}</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

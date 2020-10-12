@@ -1,0 +1,34 @@
+﻿
+.pagination-custom {
+    font-size: 16px !important;
+}
+.pagination-custom li a {
+    cursor: pointer;
+}
+
+.input-search-single{
+    margin-bottom: 30px;
+}
+
+.txt-num-records-found{
+    font-size: 19px;
+    font-weight:600;
+}
+
+.display-num-records-found{
+    font-size: 17px
+}
+
+.float-right{
+    float: right;
+}
+
+.text-error-validation{
+   display: block;
+   padding-top: 7px
+}
+
+.login-box {
+    width: 21%;
+    font-size: 17px;
+}

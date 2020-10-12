@@ -1,0 +1,16 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@using TeduShop.Web.Models
+@model TeduShop.Web.Models.PageViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = Constant.View_Layouts;
+}
+<div class="single_top">
+    <div class="single_grid">
+        <h1>@Model.Name</h1>
+        @Html.Raw(Model.Content)
+        <div class="clearfix"> </div>
+    </div>
+</div>

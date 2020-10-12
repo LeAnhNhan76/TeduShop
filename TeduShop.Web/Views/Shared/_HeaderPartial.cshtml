@@ -1,0 +1,99 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@using Microsoft.AspNet.Identity
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-left">
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><i class="fa fa-volume-control-phone" aria-hidden="true" style="transform: rotate(-25deg);"></i> &nbsp;<a href="#"> @ResourceManagement.GetResourceText(Constant.Resource_24x7livesupport)</a></li>
+                </ul>
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><i class="fa fa-truck" aria-hidden="true"></i> &nbsp;<a href="#"> @ResourceManagement.GetResourceText(Constant.Resource_FreeShippingOrderOver300)</a></li>
+                </ul>
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="/gioi-thieu.html">@ResourceManagement.GetResourceText(Constant.Resource_AboutUs)</a></li>
+                </ul>
+                <ul class="support">
+                    <li><a href="#"><label> </label></a></li>
+                    <li><a href="/lien-he.html">@ResourceManagement.GetResourceText(Constant.Resource_Contact)</a></li>
+                </ul>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="top-header-right">
+                <div class="down-top">
+                    <i class="fa fa-globe icon-language" aria-hidden="true"></i>
+                    <select class="in-drop" onchange="sys.changeLanguage(this.value)">
+                        @{ var langCurrent = ResourceManagement.selectListLang.Where(x => x.Key == ViewBag.LanguageCurrent).FirstOrDefault();}
+                        <option value="@langCurrent.Key" class="in-of">
+                            @ResourceManagement.DisplayResourceText(langCurrent.Key, langCurrent.Value)
+                        </option>
+                        @foreach (var lang in ResourceManagement.selectListLang.Where(x => x.Key != langCurrent.Key))
+                        {
+                            <option value="@lang.Key" class="in-of">
+                                @ResourceManagement.DisplayResourceText(lang.Key, langCurrent.Value)
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="down-top top-down">
+                    <select class="in-drop">
+                        <option value="Dollar" class="in-of">Dollar</option>
+                        <option value="Yen" class="in-of">Yen</option>
+                        <option value="Euro" class="in-of">Euro</option>
+                    </select>
+                </div>
+                <!---->
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="header-bottom-left">
+                <div class="logo">
+                    <a href="/"><img src="/Assets/client/images/logo.png" alt=" " /></a>
+                </div>
+                <div class="search">
+                    <form method="get" action="/tim-kiem.html">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="@ResourceManagement.GetResourceText(Constant.Resource_EnterKeyword) ...">
+                        <input type="submit" value="@ResourceManagement.GetResourceText(Constant.Resource_Search)" id="btnSearch">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="header-bottom-right" style="text-transform:uppercase">
+                @if (Request.IsAuthenticated)
+                {
+                    <div class="account">
+                        <a href="/tai-khoan.html"><span> </span>@ResourceManagement.GetResourceText(Constant.Resource_Welcome), @User.Identity.Name</a>
+                    </div>
+                    using (Html.BeginForm(Constant.Action_Logout, Constant.Controller_Account, FormMethod.Post, new { @id = "frmLogout" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="logout">
+                            <li><a href="#" id="btnLogout">@ResourceManagement.GetResourceText(Constant.Resource_Logout)</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="login">
+                        <li><a href="/dang-nhap.html"><span> </span>@ResourceManagement.GetResourceText(Constant.Resource_SignIn)</a></li> |
+                        <li><a href="/dang-ky.html">@ResourceManagement.GetResourceText(Constant.Resource_SignUp)</a></li>
+                    </ul>
+                }
+                <div class="cart"><a href="/gio-hang.html"><span> </span>@ResourceManagement.GetResourceText(Constant.Resource_Cart) </a>
+                    <span class="badge badge-primary" id="count-in-cart">
+                    @ViewBag.CountInCart
+                    </span></div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

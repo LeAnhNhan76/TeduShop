@@ -1,0 +1,57 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@using BotDetect.Web.Mvc
+
+@model TeduShop.Web.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = ResourceManagement.GetResourceText(Constant.Resource_Register);
+    Layout = Constant.View_Layouts;
+}
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+<div class="register">
+    @using (Html.BeginForm(Constant.Action_Register, Constant.Controller_Account, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+        @Html.ValidationSummary(false, "", new { @class = "error" })
+
+        if (ViewData[Constant.ViewData_SuccessMsg] != null)
+        {
+    <div class="alert alert-success" role="alert">
+        <strong>@ResourceManagement.GetResourceText(Constant.Resource_Congratulations)! </strong> @ResourceManagement.GetResourceText(Constant.Resource_RegistedSuccessfully).
+        <br />@ResourceManagement.GetResourceText(Constant.Resource_ClickPlease) <a href="/dang-nhap.html">@ResourceManagement.GetResourceText(Constant.Resource_AtHere) </a>@ResourceManagement.GetResourceText(Constant.Resource_ToLogin).
+    </div>
+        }
+        <div class="register-top-grid">
+            <h3>@ResourceManagement.GetResourceText(Constant.Resource_AccountInfo)</h3>
+            <div class="mation">
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_YourName)<label>*</label></span>
+                @Html.TextBoxFor(model => model.FullName)
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_YourEmail)<label>*</label></span>
+                @Html.TextBoxFor(model => model.Email)
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_Address)<label>*</label></span>
+                @Html.TextBoxFor(model => model.Address)
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_Mobile)<label>*</label></span>
+                @Html.TextBoxFor(model => model.PhoneNumber)
+
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_UserName)<label>*</label></span>
+                @Html.TextBoxFor(model => model.UserName)
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_Password)<label>*</label></span>
+                @Html.PasswordFor(model => model.Password)
+
+                @{
+                    MvcCaptcha registerCaptcha = new MvcCaptcha(Constant.RegisterCaptcha);
+                }
+                @Html.Captcha(registerCaptcha)
+                @Html.TextBox(Constant.CaptchaCode)
+
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="register-but">
+            <input type="submit" value="@ResourceManagement.GetResourceText(Constant.Resource_Register)">
+            <div class="clearfix"> </div>
+        </div>
+    }
+</div>

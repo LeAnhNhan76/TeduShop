@@ -1,0 +1,10 @@
+﻿{
+  "ApplicationGroup": "Application group",
+  "GroupName": "Group name",
+  "Description": "Description",
+  "AddUserGroup": "Add user group",
+  "EditUserGroup": "Edit user group",
+  "GroupNameIsRequired": "Group name is required",
+  "GroupNameIsOnly250CharsLong": "Group name is only 250 chars long",
+  "DescriptionIsOnly250CharsLong": "Description is only 250 chars long"
+}

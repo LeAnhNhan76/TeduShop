@@ -1,0 +1,87 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@model TeduShop.Web.Models.ShoppingCartViewModel
+@{
+    ViewBag.Title = Constant.Title_ShoppingCart;
+    Layout = Constant.View_Layouts;
+}
+
+<style>
+    #btnCreateOrder {
+        background: #F97E76;
+        color: #FFF;
+        font-size: 1em;
+        padding: 0.8em 2em;
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        display: inline-block;
+        text-transform: uppercase;
+        border: none;
+        outline: none;
+    }
+</style>
+<div class="single_top">
+    <div class="single_grid">
+        <div id="cartContent">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_No)</td>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_ProductName)</td>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_Image)</td>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_Price)</td>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_Count)</td>
+                        <td>@ResourceManagement.GetResourceText(Constant.Resource_Amount)</td>
+                        <td>#</td>
+                    </tr>
+                </thead>
+                <tbody id="cartBody"></tbody>
+            </table>
+            <button class="btn btn-success" id="btnContinue">@ResourceManagement.GetResourceText(Constant.Resource_ContinueToBuy)</button>
+            <button class="btn btn-danger" id="btnDeleteAll">@ResourceManagement.GetResourceText(Constant.Resource_DeleteCart)</button>
+            <button class="btn btn" id="btnCheckout">@ResourceManagement.GetResourceText(Constant.Resource_Payment)</button>
+            <div class="pull-right">
+                @ResourceManagement.GetResourceText(Constant.Resource_TotalMoney): <span id="lblTotalOrder"></span>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div id="divCheckout" style="display:none;">
+        <div class="reservation_top">
+            <div class="contact_right">
+                <h3>@ResourceManagement.GetResourceText(Constant.Resource_Payment)</h3>
+                <div class="contact-form">
+                    <form method="post" id="frmPayment">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <label>
+                                <input type="checkbox" id="chkUserLoginInfo" />
+                                @ResourceManagement.GetResourceText(Constant.Resource_UseLoginInfo)
+                            </label>
+                        }
+                        <input type="text" class="textbox" id="txtName" name="name" placeholder="@ResourceManagement.GetResourceText(Constant.Resource_YourName) ...">
+                        <input type="text" class="textbox" id="txtAddress" name="address" placeholder="@ResourceManagement.GetResourceText(Constant.Resource_Address) ...">
+                        <input type="text" class="textbox" id="txtEmail" name="email" placeholder="@ResourceManagement.GetResourceText(Constant.Resource_YourEmail) ...">
+                        <input type="text" class="textbox" id="txtPhone" name="phone" placeholder="@ResourceManagement.GetResourceText(Constant.Resource_Mobile) ...">
+                        <textarea value="" id="txtMessage">Message</textarea>
+                        <input type="button" id="btnCreateOrder" value="@ResourceManagement.GetResourceText(Constant.Resource_Payment)">
+                        <div class="clearfix"> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="tplCart" type="x-tmpl-mustache">
+    <tr>
+        <td>{{ProductId}}</td>
+        <td>{{ProductName}}</td>
+        <td><img src="{{Image}}" height="140" /></td>
+        <td>{{PriceF}}</td>
+        <td><input type="number" data-id="{{ProductId}}" data-price="{{Price}}" value="{{Quantity}}" min="0" class="input txtQuantity" /></td>
+        <td id="amount_{{ProductId}}">{{Amount}}</td>
+        <td><button class="btn btn-danger btnDeleteItem" data-id="{{ProductId}}"><i class="fa fa-close"></i></button></td>
+    </tr>
+</script>

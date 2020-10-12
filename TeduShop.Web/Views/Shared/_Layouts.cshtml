@@ -1,0 +1,62 @@
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+@using TeduShop.Common.Constants
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Big shope A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <link href="/Assets/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/client/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
+    <!--theme-style-->
+    <link href="~/Assets/admin/libs/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
+    <link href="/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!--client main-->
+    <link href="~/Assets/client/css/clientMain.css" rel="stylesheet" />
+    <!--//client main-->
+    <!--BEGIN CSS LIBS-->
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
+    <!--END CSS LIBS-->
+    <!--BEGIN JS LIBS-->
+    <script src="/Assets/client/js/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
+    <!--END JS LIBS-->
+    <!--BEGIN JS EXTENSION-->
+    <script src="~/app/shared/modules/sys.js"></script>
+    <!--END JS EXTENSION-->
+</head>
+<body>
+    <!--header-->
+    @{ Html.RenderAction(Constant.Action_Header, Constant.Controller_Home);}
+    <!---->
+    <div class="container">
+        @RenderBody()
+        @{ Html.RenderAction(Constant.Action_Category, Constant.Controller_Home);}
+    </div>
+    <!-- BEGIN NOTIFICATION -->
+    @Html.Partial(Constant.PartialView_NotificationPartial)
+    <!-- END NOTIFICATION -->
+    @{ Html.RenderAction(Constant.Action_Footer, Constant.Controller_Home);}
+    <div class="clearfix"></div>
+    <!--script-->
+    <script src="/Assets/client/js/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Assets/admin/libs/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/Assets/admin/libs/jquery-validation/dist/additional-methods.js"></script>
+    <script src="~/Assets/admin/libs/mustache/mustache.js"></script>
+    <script src="~/Assets/admin/libs/numeral/numeral.js"></script>
+    <script src="~/Assets/client/js/common.js"></script>
+    <script src="~/Assets/client/js/controllers/shoppingCart.js"></script>
+    <!--script-->
+    @RenderSection(Constant.Section_FooterJS, required: false)
+</body>
+</html>

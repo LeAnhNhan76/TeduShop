@@ -1,0 +1,10 @@
+﻿{
+  "ApplicationRole": "Application Role",
+  "RoleName": "Tên quyền người dùng",
+  "Description": "Mô tả ngắn",
+  "AddUserRole": "Thêm quyền người dùng",
+  "EditUserRole": "Cập nhật quyền người dùng",
+  "RoleNameIsRequired": "Tên quyền người dùng không được để trống",
+  "RoleNameIsOnly250CharsLong": "Tên quyền người dùng chỉ dài tối đa 250 kí tự",
+  "DescriptionIsOnly250CharsLong": "Mô tả ngắn chỉ dài tối đa 250 kí tự"
+}

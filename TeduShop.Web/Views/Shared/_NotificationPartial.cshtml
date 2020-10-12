@@ -1,0 +1,45 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+<script type="text/javascript">
+
+    var title = '@ResourceManagement.GetResourceText(Constant.Resource_SytemNotification).ToUpper()';
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    var tedushop_notification = {
+        addToCartSuccess : function () {
+            toastr['@Constant.Notification_Success']('@Html.Raw(ResourceManagement.GetResourceText(Constant.Resource_AddToCartSuccess))', title);
+        },
+        deleteAllCartSuccess : function () {
+            toastr['@Constant.Notification_Success']('@Html.Raw(ResourceManagement.GetResourceText(Constant.Resource_DeleteAllCartSuccess))', title);
+        },
+        updateCartSuccess : function () {
+            toastr['@Constant.Notification_Success']('@Html.Raw(ResourceManagement.GetResourceText(Constant.Resource_UpdateCartSuccess))', title);
+        },
+        createOrderSuccess : function () {
+            toastr['@Constant.Notification_Success']('@Html.Raw(ResourceManagement.GetResourceText(Constant.Resource_CreateOrderSuccess))', title);
+        },
+        createOrderFail : function () {
+            toastr['@Constant.Notification_Error']('@Html.Raw(ResourceManagement.GetResourceText(Constant.Resource_CreateOrderFail))', title);
+        },
+    }
+
+</script>
+
+

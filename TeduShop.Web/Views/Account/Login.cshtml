@@ -1,0 +1,44 @@
+﻿@using TeduShop.Common.Constants
+@using TeduShop.Web.Common
+@model TeduShop.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = Constant.Title_Login;
+    Layout = Constant.View_Layouts;
+}
+<style>
+    .login-right input[type="password"] {
+        width: 96% !important;
+        padding: 10px !important;
+    }
+</style>
+<div class="account_grid">
+    <div class="login-right">
+        <h3>@ResourceManagement.GetResourceText(Constant.Resource_LogIn)</h3>
+        @using (Html.BeginForm(Constant.Action_Login, Constant.Controller_Account, new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.ValidationSummary(false, "", new { @class = "error" })
+            <div>
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_UserName)<label>*</label></span>
+                @Html.TextBoxFor(model => model.UserName)
+            </div>
+            <div>
+                <span>@ResourceManagement.GetResourceText(Constant.Resource_Password)<label>*</label></span>
+                @Html.PasswordFor(model => model.Password)
+            </div>
+            <div>
+                @Html.CheckBoxFor(model => model.RememberMe)
+                @ResourceManagement.GetResourceText(Constant.Resource_RememberMe)?
+            </div>
+            <a class="forgot" href="#">@ResourceManagement.GetResourceText(Constant.Resource_ForgotPassword)?</a>
+            <input type="submit" value="Login">
+        }
+    </div>
+    <div class="login-left">
+        <h3>@ResourceManagement.GetResourceText(Constant.Resource_HaventHadAccountYet)</h3>
+        <p>@ResourceManagement.GetResourceText(Constant.Resource_IfYouHaventHadAccountThenClickLinkBellow):</p>
+        <a class="acount-btn" href="/dang-ky.html">@ResourceManagement.GetResourceText(Constant.Resource_RegisterMember)</a>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+
+

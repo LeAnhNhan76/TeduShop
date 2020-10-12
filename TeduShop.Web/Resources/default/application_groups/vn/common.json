@@ -1,0 +1,10 @@
+﻿{
+  "ApplicationGroup": "Application group",
+  "GroupName": "Tên nhóm",
+  "Description": "Mô tả ngắn",
+  "AddUserGroup": "Thêm nhóm người dùng",
+  "EditUserGroup": "Cập nhật nhóm người dùng",
+  "GroupNameIsRequired": "Tên nhóm không được để trống",
+  "GroupNameIsOnly250CharsLong": "Tên nhóm chỉ dài tối đa 250 kí tự",
+  "DescriptionIsOnly250CharsLong": "Mô tả ngắn chỉ dài tối đa 250 kí tự"
+}
