@@ -64,9 +64,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\202010101628576_AddClientTableAndRefreshTokenTable.cs" />
-    <Compile Include="Migrations\202010101628576_AddClientTableAndRefreshTokenTable.Designer.cs">
-      <DependentUpon>202010101628576_AddClientTableAndRefreshTokenTable.cs</DependentUpon>
+    <Compile Include="Migrations\202010140446306_InitializeTeduShopDatabase.cs" />
+    <Compile Include="Migrations\202010140446306_InitializeTeduShopDatabase.Designer.cs">
+      <DependentUpon>202010140446306_InitializeTeduShopDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,8 +115,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010101628576_AddClientTableAndRefreshTokenTable.resx">
-      <DependentUpon>202010101628576_AddClientTableAndRefreshTokenTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010140446306_InitializeTeduShopDatabase.resx">
+      <DependentUpon>202010140446306_InitializeTeduShopDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

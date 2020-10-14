@@ -26,6 +26,7 @@
             CreateProductCategorySample(context);
             CreateSlideSample(context);
             CreatePage(context);
+            CreateFooterSample(context);
             CreateContactDetail(context);
             CreateClient(context);
         }

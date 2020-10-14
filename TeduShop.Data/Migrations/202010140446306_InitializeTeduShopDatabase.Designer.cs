@@ -7,13 +7,13 @@ namespace TeduShop.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddClientTableAndRefreshTokenTable : IMigrationMetadata
+    public sealed partial class InitializeTeduShopDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddClientTableAndRefreshTokenTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeTeduShopDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010101628576_AddClientTableAndRefreshTokenTable"; }
+            get { return "202010140446306_InitializeTeduShopDatabase"; }
         }
         
         string IMigrationMetadata.Source
