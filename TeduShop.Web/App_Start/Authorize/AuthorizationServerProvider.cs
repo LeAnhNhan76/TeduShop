@@ -49,17 +49,17 @@ namespace TeduShop.Web.App_Start.Authorize
         // Validate all of the token request from client
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            string clientId = string.Empty;
-            string clientSecret = string.Empty;
+            //string clientId = string.Empty;
+            //string clientSecret = string.Empty;
 
-            // The TryGetBasicCredentials method checks the Authorization header and
-            // Return the ClientId and clientSecret
-            if (!context.TryGetBasicCredentials(out clientId, out clientSecret))
-            {
-                context.SetError(Constant.OAuthorization_Invalid_Client, "Client credentials could not be retrieved through the Authorization header.");
-                context.Rejected();
-                return;
-            }
+            //// The TryGetBasicCredentials method checks the Authorization header and
+            //// Return the ClientId and clientSecret
+            //if (!context.TryGetBasicCredentials(out clientId, out clientSecret))
+            //{
+            //    context.SetError(Constant.OAuthorization_Invalid_Client, "Client credentials could not be retrieved through the Authorization header.");
+            //    context.Rejected();
+            //    return;
+            //}
             //Check the existence of by calling the ValidateClient method
             Client client = _clientService.GetByClientIdAndClientSecret(_publicClientId, _publicClientSecret);
 
