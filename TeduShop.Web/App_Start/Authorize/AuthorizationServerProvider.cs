@@ -18,7 +18,7 @@ namespace TeduShop.Web.App_Start.Authorize
     {
         #region Properties
 
-        private readonly IClientService _clientService;
+        private IClientService _clientService;
 
         /// <summary>
         /// Public client ID property.
@@ -37,7 +37,6 @@ namespace TeduShop.Web.App_Start.Authorize
 
         public AuthorizationServerProvider(string publicClientId, string publicClientSecret)
         {
-            this._clientService = GetClientService();
             this._publicClientId = publicClientId;
             this._publicClientSecret = publicClientSecret;
         }
@@ -60,6 +59,9 @@ namespace TeduShop.Web.App_Start.Authorize
             //    context.Rejected();
             //    return;
             //}
+
+            _clientService = GetClientService();
+
             //Check the existence of by calling the ValidateClient method
             Client client = _clientService.GetByClientIdAndClientSecret(_publicClientId, _publicClientSecret);
 
