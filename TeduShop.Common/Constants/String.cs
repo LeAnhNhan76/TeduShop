@@ -51,10 +51,10 @@ namespace TeduShop.Common.Constants
         /// <summary>
         /// BIG_SHOPE_ClientId
         /// </summary>
-        public const string BIG_SHOPE_ClientId_Key = "BIG_SHOPE_ClientId";
+        public const string Public_ClientId = "Public_ClientId";
         /// <summary>
         /// BIG_SHOPE_ClientSecret
         /// </summary>
-        public const string BIG_SHOPE_ClientSecret_Key = "BIG_SHOPE_ClientSecret";
+        public const string Public_ClientSecret = "Public_ClientSecret";
     }
 }

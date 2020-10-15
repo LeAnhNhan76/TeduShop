@@ -48,12 +48,12 @@ namespace TeduShop.Web
         /// <summary>
         /// BIG_SHOPE public identifier
         /// </summary>
-        public static string BIG_SHOPE_ClientId = string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.BIG_SHOPE_ClientId_Key].ToString()) ? String.Empty : ConfigurationManager.AppSettings[Constant.BIG_SHOPE_ClientId_Key].ToString().ToLower();
+        public static string Public_ClientId = string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Public_ClientId].ToString()) ? String.Empty : ConfigurationManager.AppSettings[Constant.Public_ClientId].ToString().ToLower();
 
         /// <summary>
         /// BIG_SHOPE public secret key
         /// </summary>
-        public static string BIG_SHOPE_ClientSecret = string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.BIG_SHOPE_ClientSecret_Key].ToString()) ? String.Empty : ConfigurationManager.AppSettings[Constant.BIG_SHOPE_ClientSecret_Key].ToString().ToLower();
+        public static string Public_ClientSecret = string.IsNullOrEmpty(ConfigurationManager.AppSettings[Constant.Public_ClientSecret].ToString()) ? String.Empty : ConfigurationManager.AppSettings[Constant.Public_ClientSecret].ToString().ToLower();
 
         #endregion Variables and Properties
 

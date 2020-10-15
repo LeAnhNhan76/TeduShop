@@ -41,8 +41,8 @@ namespace TeduShop.Web.App_Start
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
 
-            PublicClientId = App.BIG_SHOPE_ClientId;
-            PublicClientSecret = App.BIG_SHOPE_ClientSecret;
+            PublicClientId = App.Public_ClientId;
+            PublicClientSecret = App.Public_ClientSecret;
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
