@@ -41,7 +41,6 @@ namespace TeduShop.Service
         {
             return _clientRepository.GetByClientIdAndClientSecret(clientId, clientSecret);
         }
-
         #endregion Methods
     }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin.Security.Infrastructure;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TeduShop.Common.Constants;
 using TeduShop.Common.Utilities;
@@ -14,7 +15,7 @@ namespace TeduShop.Web.App_Start.Authorize
     {
         #region Properties
 
-        private readonly IRefreshTokenService _refreshTokenService;
+        private IRefreshTokenService _refreshTokenService;
 
         #endregion Properties
 
@@ -22,7 +23,7 @@ namespace TeduShop.Web.App_Start.Authorize
 
         public RefreshTokenProvider()
         {
-            this._refreshTokenService = GetRefreshTokenService();
+           
         }
 
         #endregion Constructors
@@ -31,13 +32,19 @@ namespace TeduShop.Web.App_Start.Authorize
 
         public async Task CreateAsync(AuthenticationTokenCreateContext context)
         {
+            // Initilize refresh token service
+            this._refreshTokenService = GetRefreshTokenService(new DbFactory() { });
+
             //Get the client Id from Ticket properties
             var clientId = context.Ticket.Properties.Dictionary[Constant.OAuthorization_Properties_ClientId];
             if (string.IsNullOrEmpty(clientId)) return;
 
+            var userName = context.Ticket.Identity.FindFirst(ClaimTypes.NameIdentifier);
+            if (userName == null) return;
+
             // Generating a Unique Refresh Token ID
             var refreshTokenId = Guid.NewGuid().ToString("n");
-
+            
             var refreshTokenLifeTime = context.OwinContext.Get<string>(Constant.OAuthorization_OAuth_ClientRefreshTokenLifeTime);
             // Creating the Refresh Token object
             var refreshToken = new RefreshToken()
@@ -45,7 +52,7 @@ namespace TeduShop.Web.App_Start.Authorize
                 // storing the refreshTokenId in hash format
                 ID = CipherUtility.GetHash(refreshTokenId),
                 ClientId = clientId,
-                UserName = context.Ticket.Identity.Name,
+                UserName = userName.Value,
                 IssuedTime = DateTime.UtcNow,
                 ExpiredTime = DateTime.UtcNow.AddMinutes(Convert.ToDouble(refreshTokenLifeTime))
             };
@@ -92,19 +99,19 @@ namespace TeduShop.Web.App_Start.Authorize
 
         #region private method
 
-        private static IRefreshTokenService GetRefreshTokenService()
+        private static IRefreshTokenService GetRefreshTokenService(DbFactory dbFactory)
         {
-            return new RefreshTokenService(GetRefreshTokenRepository(), GetUnitOfWork());
+            return new RefreshTokenService(GetRefreshTokenRepository(dbFactory), GetUnitOfWork(dbFactory));
         }
 
-        private static IRefreshTokenRepository GetRefreshTokenRepository()
+        private static IRefreshTokenRepository GetRefreshTokenRepository(DbFactory dbFactory)
         {
-            return new RefreshTokenRepository(new DbFactory() { });
+            return new RefreshTokenRepository(dbFactory) { };
         }
 
-        private static IUnitOfWork GetUnitOfWork()
+        private static IUnitOfWork GetUnitOfWork(DbFactory dbFactory)
         {
-            return new UnitOfWork(new DbFactory() { }) { };
+            return new UnitOfWork(dbFactory) { };
         }
 
         #endregion private method

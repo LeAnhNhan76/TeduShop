@@ -48,6 +48,7 @@ namespace TeduShop.Web.App_Start.Authorize
         // Validate all of the token request from client
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            #region Try Get Credentials
             //string clientId = string.Empty;
             //string clientSecret = string.Empty;
 
@@ -59,8 +60,10 @@ namespace TeduShop.Web.App_Start.Authorize
             //    context.Rejected();
             //    return;
             //}
+            #endregion
 
-            _clientService = GetClientService();
+            // Initialize client service
+            _clientService = GetClientService(new DbFactory() { });
 
             //Check the existence of by calling the ValidateClient method
             Client client = _clientService.GetByClientIdAndClientSecret(_publicClientId, _publicClientSecret);
@@ -152,21 +155,42 @@ namespace TeduShop.Web.App_Start.Authorize
             return base.TokenEndpoint(context);
         }
 
+        public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
+        {
+            var originalClient = context.Ticket.Properties.Dictionary[Constant.OAuthorization_Properties_ClientId];
+            var currentClient = context.ClientId;
+
+            if (originalClient != currentClient)
+            {
+                context.SetError(Constant.OAuthorization_Invalid_Client, "Refresh token is issued to a different clientId.");
+                return Task.FromResult<object>(null);
+            }
+
+            //Change auth ticket for refresh token requests
+            var newIdentity = new ClaimsIdentity(context.Ticket.Identity);
+            newIdentity.AddClaim(new Claim("newClaim", "newValue"));
+
+            var newTicket = new AuthenticationTicket(newIdentity, context.Ticket.Properties);
+            context.Validated(newTicket);
+
+            return Task.FromResult<object>(null);
+        }
+
         #region private method
 
-        private static IClientService GetClientService()
+        private static IClientService GetClientService(DbFactory dbFactory)
         {
-            return new ClientService(GetClientRepository(), GetUnitOfWork());
+            return new ClientService(GetClientRepository(dbFactory), GetUnitOfWork(dbFactory));
         }
 
-        private static IClientRepository GetClientRepository()
+        private static IClientRepository GetClientRepository(DbFactory dbFactory)
         {
-            return new ClientRepository(new DbFactory() { });
+            return new ClientRepository(dbFactory) { };
         }
 
-        private static IUnitOfWork GetUnitOfWork()
+        private static IUnitOfWork GetUnitOfWork(DbFactory dbFactory)
         {
-            return new UnitOfWork(new DbFactory() { }) { };
+            return new UnitOfWork(dbFactory) { };
         }
 
         #endregion private method
