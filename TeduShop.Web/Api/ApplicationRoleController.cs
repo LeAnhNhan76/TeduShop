@@ -31,7 +31,8 @@ namespace TeduShop.Web.Api
         #region Constructors
 
         public ApplicationRoleController(IErrorService errorService
-            , IApplicationRoleService appRoleService) : base(errorService)
+            , IApplicationRoleService appRoleService
+            , IClientService clientService) : base(errorService, clientService)
         {
             _appRoleService = appRoleService;
         }

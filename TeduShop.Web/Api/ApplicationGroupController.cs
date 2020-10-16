@@ -34,7 +34,8 @@ namespace TeduShop.Web.Api
         public ApplicationGroupController(IErrorService errorService,
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
-            IApplicationGroupService appGroupService) : base(errorService)
+            IApplicationGroupService appGroupService,
+            IClientService clientService) : base(errorService, clientService)
         {
             _appGroupService = appGroupService;
             _appRoleService = appRoleService;

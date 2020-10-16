@@ -1,24 +1,19 @@
 ﻿using System.Web.Http;
 using TeduShop.Common.Constants;
 using TeduShop.Service;
+using TeduShop.Web.App_Start.Authorize;
 using TeduShop.Web.Infrastructure.Core;
 
 namespace TeduShop.Web.Api
 {
     [RoutePrefix(Api_Home)]
-    [Authorize]
+    [APIAuthorize]
     public class HomeController : BaseApiController
     {
-
-        #region Properties
-        IErrorService _errorService;
-        #endregion Properties
-
         #region Constructors
 
-        public HomeController(IErrorService errorService) : base(errorService)
+        public HomeController(IErrorService errorService, IClientService clientService) : base(errorService, clientService)
         {
-            this._errorService = errorService;
         }
 
         #endregion Constructors

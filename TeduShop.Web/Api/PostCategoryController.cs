@@ -22,7 +22,7 @@ namespace TeduShop.Web.Api
 
         #region Constructors
 
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
+        public PostCategoryController(IErrorService errorService, IClientService clientService, IPostCategoryService postCategoryService) : base(errorService, clientService)
         {
             _postCategoryService = postCategoryService;
         }

@@ -15,14 +15,17 @@ namespace TeduShop.Web.Infrastructure.Core
         #region Properties
 
         private IErrorService _errorService;
+        private readonly IClientService _clientService;
 
         #endregion Properties
 
         #region Constructors
 
-        public BaseApiController(IErrorService errorService)
+        public BaseApiController(IErrorService errorService
+            , IClientService clientService)
         {
             this._errorService = errorService;
+            this._clientService = clientService;
         }
 
         #endregion Constructors

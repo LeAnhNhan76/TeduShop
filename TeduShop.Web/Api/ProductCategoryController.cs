@@ -25,7 +25,7 @@ namespace TeduShop.Web.Api
 
         #region Constructors
 
-        public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService) : base(errorService)
+        public ProductCategoryController(IErrorService errorService, IClientService clientService, IProductCategoryService productCategoryService) : base(errorService, clientService)
         {
             _productCategoryService = productCategoryService;
         }
