@@ -1,13 +1,12 @@
 ﻿using System.Web.Http;
 using TeduShop.Common.Constants;
 using TeduShop.Service;
-using TeduShop.Web.App_Start.Authorize;
 using TeduShop.Web.Infrastructure.Core;
 
 namespace TeduShop.Web.Api
 {
     [RoutePrefix(Api_Home)]
-    [APIAuthorize]
+    [Authorize]
     public class HomeController : BaseApiController
     {
         #region Constructors
@@ -26,7 +25,7 @@ namespace TeduShop.Web.Api
         {
             return Constant.HelloTEDUMember;
         }
-        
+
         #endregion Methods
     }
 }
