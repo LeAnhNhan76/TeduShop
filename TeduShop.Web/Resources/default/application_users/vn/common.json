@@ -1,6 +1,19 @@
 ﻿{
   "ApplicationUser": "Người dùng",
+  "FullName": "Họ tên người dùng",
   "UserName": "Tên người dùng",
   "Account": "Tài khoản",
-  "Email": "Email"
+  "Password": "Mật khẩu",
+  "Email": "Email",
+  "PhoneNumber": "Số điện thoại",
+  "Birthday": "Ngày sinh",
+  "AddUser": "Thêm người dùng",
+  "FullNameIsRequired": "Họ tên không được để trống",
+  "FullNameIsOnly250CharsLong": "Họ tên chỉ dài tối đa 250 kí tự",
+  "UserNameIsRequired": "Tên người dùng không được để trống",
+  "EmailIsRequired": "Email không được để trống",
+  "PhoneNumberIsRequired": "Số điện thoại không được để trống",
+  "BirthdayIsRequired": "Ngày sinh không được để trống",
+  "PasswordIsRequired": "Mật khẩu không được để trống",
+  "PasswordIsAtLeast6Chars": "Mật khẩu ít nhất 6 kí tự trở lên"
 }

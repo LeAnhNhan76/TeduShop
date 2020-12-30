@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{resourcePage.AddUserGroup}}</h1>
+                <h1>{{resourcePage.AddUser}}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a ui-sref="home">{{resourceShared.Home}}</a></li>
-                    <li class="breadcrumb-item"><a ui-sref="products">{{resourceShared.System}}</a></li>
-                    <li class="breadcrumb-item"><a ui-sref="product_categories">{{resourceShared.UserGroup}}</a></li>
+                    <li class="breadcrumb-item"><a >{{resourceShared.System}}</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="application_users">{{resourceShared.User}}</a></li>
                     <li class="breadcrumb-item active">{{resourceShared.Add}}</li>
                 </ol>
             </div>
@@ -26,28 +26,57 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmAddApplicationGroup" role="form" ng-submit="onAddApplicationGroup()">
+        <form class="form-horizontal" novalidate name="frmAddApplicationUser" role="form" ng-submit="onAddApplicationUser()">
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.GroupName}}</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.FullName}}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" required ng-maxlength="250" ng-model="applicationGroup.Name" placeholder="{{resourcePage.GroupName}}">
-                        <span ng-show="frmAddApplicationGroup.name.$error.required" class="text-danger text-error-validation">{{resourcePage.GroupNameIsRequired}}</span>
-                        <span ng-show="frmAddApplicationGroup.name.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.GroupNameIsOnly250CharsLong}}</span>
+                        <input type="text" class="form-control" name="fullname" required ng-maxlength="250" ng-model="applicationUser.FullName" placeholder="{{resourcePage.FullName}}">
+                        <span ng-show="frmAddApplicationUser.fullname.$error.required" class="text-danger text-error-validation">{{resourcePage.FullNameIsRequired}}</span>
+                        <span ng-show="frmAddApplicationUser.fullname.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.FullNameIsOnly250CharsLong}}</span>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Description}}</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Account}}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" ng-maxlength="500" ng-model="applicationGroup.Description" placeholder="{{resourcePage.Description}}">
-                        <span ng-show="frmAddApplicationGroup.description.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.DescriptionIsOnly250CharsLong}}</span>
+                        <input type="text" class="form-control" name="username" required ng-model="applicationUser.UserName" placeholder="{{resourcePage.Account}}">
+                        <span ng-show="frmAddApplicationUser.username.$error.required" class="text-danger text-error-validation">{{resourcePage.UserNameIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Password}}</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="password" ng-minlength="6" required ng-model="applicationUser.Password" placeholder="{{resourcePage.Password}}">
+                        <span ng-show="frmAddApplicationUser.password.$error.required" class="text-danger text-error-validation">{{resourcePage.PasswordIsRequired}}</span>
+                        <span ng-show="frmAddApplicationUser.password.$error.minlength" class="text-danger text-error-validation">{{resourcePage.PasswordIsAtLeast6Chars}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Email}}</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" required ng-model="applicationUser.Email" placeholder="{{resourcePage.Email}}">
+                        <span ng-show="frmAddApplicationUser.email.$error.required" class="text-danger text-error-validation">{{resourcePage.EmailIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.PhoneNumber}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="phonenumber" required ng-model="applicationUser.PhoneNumber" placeholder="{{resourcePage.PhoneNumber}}">
+                        <span ng-show="frmAddApplicationUser.phonenumber.$error.required" class="text-danger text-error-validation">{{resourcePage.PhoneNumberIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Birthday}}</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="birthday" as-date required ng-model="applicationUser.Birthday" placeholder="{{resourcePage.Birthday}}">
+                        <span ng-show="frmAddApplicationUser.birthday.$error.required" class="text-danger text-error-validation">{{resourcePage.BirthdayIsRequired}}</span>
                     </div>
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button ui-sref="application_groups" class="btn btn-default">{{resourceShared.Cancel}}</button>
-                <button type="submit" ng-disabled="frmAddApplicationGroup.$invalid" class="btn btn-success float-right">{{resourceShared.Save}}</button>
+                <button ui-sref="application_users" class="btn btn-default">{{resourceShared.Cancel}}</button>
+                <button type="submit" ng-disabled="frmAddApplicationUser.$invalid" class="btn btn-success float-right">{{resourceShared.Save}}</button>
             </div>
             <!-- /.card-footer -->
         </form>

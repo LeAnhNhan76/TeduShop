@@ -1,6 +1,19 @@
 ﻿{
   "ApplicationUser": "Application user",
+  "FullName": "Fullname",
   "UserName": "User name",
   "Account": "Account",
-  "Email": "Email"
+  "Password": "Password",
+  "Email": "Email",
+  "PhoneNumber": "Phone number",
+  "Birthday": "Birthday",
+  "AddUser": "Add user",
+  "FullNameIsRequired": "Full name is required",
+  "FullNameIsOnly250CharsLong": "Full name is only 250 chars long",
+  "UserNameIsRequired": "User name is required",
+  "EmailIsRequired": "Email is required",
+  "PhoneNumberIsRequired": "Phone number is required",
+  "BirthdayIsRequired": "Birthday is required",
+  "PasswordIsRequired": "Password is required",
+  "PasswordIsAtLeast6Chars": "Password is at least 6 chars"
 }

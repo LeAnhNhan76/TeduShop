@@ -47,8 +47,8 @@
             manager.Create(user, "lanhan@123");
             if (!roleManager.Roles.Any())
             {
-                roleManager.Create(new IdentityRole() { Name = "Admin" });
-                roleManager.Create(new IdentityRole() { Name = "User" });
+                roleManager.Create(new ApplicationRole() { Name = "Admin" });
+                roleManager.Create(new ApplicationRole() { Name = "User" });
             }
 
             var adminUser = manager.FindByEmail("lenhanasus4@gmail.com");

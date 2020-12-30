@@ -84,7 +84,6 @@ namespace TeduShop.Web.Infrastructure.Extensions
         }
         public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = Constant.Action_Add)
         {
-
             appUser.Id = appUserViewModel.Id;
             appUser.FullName = appUserViewModel.FullName;
             appUser.Birthday = appUserViewModel.BirthDay;

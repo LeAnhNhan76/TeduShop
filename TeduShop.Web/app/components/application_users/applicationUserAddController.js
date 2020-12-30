@@ -37,7 +37,7 @@
         function onAddApplicationUser() {
             apiService.post('/api/applicationuser/add', $scope.applicationUser
                 , function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' ' + $scope.resourceShared.Added + '.');
+                    notificationService.displaySuccess(result.data.FullName + ' ' + $scope.resourceShared.Added + '.');
                     $state.go('application_users');
                 }
                 , function (error) {

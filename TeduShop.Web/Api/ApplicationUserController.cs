@@ -100,7 +100,7 @@ namespace TeduShop.Web.Api
 
         [HttpPost]
         [Route(Route_Add)]
-        [Authorize(Roles = Constant.Role_AddUser)]
+        //[Authorize(Roles = Constant.Role_AddUser)]
         public async Task<HttpResponseMessage> Add(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -114,27 +114,27 @@ namespace TeduShop.Web.Api
                     if (result.Succeeded)
                     {
                         var listAppUserGroup = new List<ApplicationUserGroup>();
-                        foreach (var group in applicationUserViewModel.Groups)
+                        if(applicationUserViewModel.Groups != null)
                         {
-                            listAppUserGroup.Add(new ApplicationUserGroup()
+                            foreach (var group in applicationUserViewModel.Groups)
                             {
-                                GroupId = group.ID,
-                                UserId = newAppUser.Id
-                            });
-                            //add role to user
-                            var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
-                            foreach (var role in listRole)
-                            {
-                                await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
-                                await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
+                                listAppUserGroup.Add(new ApplicationUserGroup()
+                                {
+                                    GroupId = group.ID,
+                                    UserId = newAppUser.Id
+                                });
+                                //add role to user
+                                var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                                foreach (var role in listRole)
+                                {
+                                    await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
+                                    await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
+                                }
                             }
+                            _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
+                            _appGroupService.Save();
                         }
-                        _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
-                        _appGroupService.Save();
-
-
                         return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
-
                     }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
