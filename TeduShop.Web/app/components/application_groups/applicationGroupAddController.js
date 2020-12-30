@@ -44,18 +44,20 @@
                     notificationService.displayError($scope.resourceShared.AddFail + '.');
                 }
             );
-        }       
-        //function onLoadParentCategory() {
-        //    apiService.get('/api/applicationGroup/getall', null
-        //        , function (result) {
-        //            $scope.parentCategories = result.data;
-        //        }
-        //        , function (error) {
-        //            console.log('Cannot get list of parent product categories');
-        //        }
-        //    );
-        //}
-        //onLoadParentCategory();
+        }
+        
+        function onLoadRoles() {
+            apiService.get('/api/applicationRole/getall', null
+                , function (result) {
+                    $scope.roles = result.data;
+                }
+                , function (error) {
+                    console.log('Cannot get list of parent product categories');
+                }
+            );
+        }
+
+        onLoadRoles();
 
         // #endregion
     }

@@ -15,5 +15,7 @@
   "PhoneNumberIsRequired": "Số điện thoại không được để trống",
   "BirthdayIsRequired": "Ngày sinh không được để trống",
   "PasswordIsRequired": "Mật khẩu không được để trống",
-  "PasswordIsAtLeast6Chars": "Mật khẩu ít nhất 6 kí tự trở lên"
+  "PasswordIsAtLeast6Chars": "Mật khẩu ít nhất 6 kí tự trở lên",
+  "UserGroup": "Nhóm người dùng",
+  "LoadUseGroupListIsFailed": "Không tải được danh sách nhóm người dùng"
 }

@@ -6,5 +6,7 @@
   "EditUserGroup": "Edit user group",
   "GroupNameIsRequired": "Group name is required",
   "GroupNameIsOnly250CharsLong": "Group name is only 250 chars long",
-  "DescriptionIsOnly250CharsLong": "Description is only 250 chars long"
+  "DescriptionIsOnly250CharsLong": "Description is only 250 chars long",
+  "UserRole": "User role",
+  "LoadUseRoleListIsFailed": "Load user role list is failed"
 }

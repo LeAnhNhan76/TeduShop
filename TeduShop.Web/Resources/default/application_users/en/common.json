@@ -15,5 +15,7 @@
   "PhoneNumberIsRequired": "Phone number is required",
   "BirthdayIsRequired": "Birthday is required",
   "PasswordIsRequired": "Password is required",
-  "PasswordIsAtLeast6Chars": "Password is at least 6 chars"
+  "PasswordIsAtLeast6Chars": "Password is at least 6 chars",
+  "UserGroup": "User group",
+  "LoadUseGroupListIsFailed": "Load user group list is failed"
 }

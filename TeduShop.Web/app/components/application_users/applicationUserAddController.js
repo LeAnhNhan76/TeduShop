@@ -44,7 +44,19 @@
                     notificationService.displayError($scope.resourceShared.AddFail + '.');
                 }
             );
-        }  
+        }
+
+        function onLoadGroups() {
+            apiService.get('/api/applicationGroup/getall',
+                null,
+                function (response) {
+                    $scope.groups = response.data;
+                }, function (response) {
+                    notificationService.displayError($scope.resourcePage.LoadUseGroupListIsFailed);
+                });
+        }
+
+        onLoadGroups();
 
         // #endregion
     }

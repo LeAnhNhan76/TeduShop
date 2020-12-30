@@ -43,6 +43,14 @@
                         <span ng-show="frmAddApplicationGroup.description.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.DescriptionIsOnly250CharsLong}}</span>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.UserRole}}</label>
+                    <div class="col-sm-10">
+                        <label ng-repeat="role in roles" style="margin-left: 15px">
+                            <input type="checkbox" checklist-model="applicationGroup.Roles" checklist-value="role" /> {{role.Name}}
+                        </label>
+                    </div>
+                </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

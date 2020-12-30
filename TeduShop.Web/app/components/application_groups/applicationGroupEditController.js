@@ -59,19 +59,19 @@
                 }
             );
         }
-        //function onLoadParentCategory() {
-        //    apiService.get('/api/applicationGroup/getall', null
-        //        , function (result) {
-        //            $scope.parentCategories = result.data;
-        //        }
-        //        , function (error) {
-        //            console.log('Cannot get list of parent product categories');
-        //        }
-        //    );
-        //}
-        //onLoadParentCategory();
 
-        // #endregion
+        function onLoadRoles() {
+            apiService.get('/api/applicationRole/getall', null
+                , function (result) {
+                    $scope.roles = result.data;
+                }
+                , function (error) {
+                    console.log('Cannot get list of parent product categories');
+                }
+            );
+        }
+
+        onLoadRoles();
     }
 
 })(angular.module('tedushop.application_groups'))

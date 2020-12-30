@@ -485,6 +485,8 @@
     <Content Include="Assets\admin\libs\bootbox\locales\uk.js" />
     <Content Include="Assets\admin\libs\bootbox\locales\zh_CN.js" />
     <Content Include="Assets\admin\libs\bootbox\locales\zh_TW.js" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.js" />
+    <Content Include="Assets\admin\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\admin\libs\ckeditor\.npm\assets\ckeditor4.png" />
     <Content Include="Assets\admin\libs\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\libs\ckeditor\ckeditor.js" />
@@ -7386,6 +7388,9 @@
     <Content Include="Assets\admin\libs\angular-ui-router\tsconfig.docgen.json" />
     <Content Include="Assets\admin\libs\angular-ui-router\typedoc.json" />
     <Content Include="Assets\admin\libs\angular-ui-router\yarn.lock" />
+    <Content Include="Assets\admin\libs\checklist-model\.bower.json" />
+    <Content Include="Assets\admin\libs\checklist-model\bower.json" />
+    <Content Include="Assets\admin\libs\checklist-model\readme.md" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Resources\default\_shared\en\common.json" />

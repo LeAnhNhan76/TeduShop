@@ -116,18 +116,18 @@ namespace TeduShop.Web.Api
                     var newAppGroup = _appGroupService.Add(appGroup);
                     _appGroupService.Save();
 
-                    ////save group
-                    //var listRoleGroup = new List<ApplicationRoleGroup>();
-                    //foreach (var role in appGroupVM.Roles)
-                    //{
-                    //    listRoleGroup.Add(new ApplicationRoleGroup()
-                    //    {
-                    //        GroupId = appGroup.ID,
-                    //        RoleId = role.Id
-                    //    });
-                    //}
-                    //_appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-                   // _appRoleService.Save();
+                    //save group
+                    var listRoleGroup = new List<ApplicationRoleGroup>();
+                    foreach (var role in appGroupVM.Roles)
+                    {
+                        listRoleGroup.Add(new ApplicationRoleGroup()
+                        {
+                            GroupId = appGroup.ID,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+                    _appRoleService.Save();
 
                     return request.CreateResponse(HttpStatusCode.OK, appGroupVM);
                 }
@@ -155,31 +155,31 @@ namespace TeduShop.Web.Api
                     _appGroupService.Update(appGroup);
                     _appGroupService.Save();
 
-                    ////save group
-                    //var listRoleGroup = new List<ApplicationRoleGroup>();
-                    //foreach (var role in appGroupVM.Roles)
-                    //{
-                    //    listRoleGroup.Add(new ApplicationRoleGroup()
-                    //    {
-                    //        GroupId = appGroup.ID,
-                    //        RoleId = role.Id
-                    //    });
-                    //}
-                    //_appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-                    //_appRoleService.Save();
+                    //save group
+                    var listRoleGroup = new List<ApplicationRoleGroup>();
+                    foreach (var role in appGroupVM.Roles)
+                    {
+                        listRoleGroup.Add(new ApplicationRoleGroup()
+                        {
+                            GroupId = appGroup.ID,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+                    _appRoleService.Save();
 
-                    ////add role to user
-                    //var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
-                    //var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
-                    //foreach (var user in listUserInGroup)
-                    //{
-                    //    var listRoleName = listRole.Select(x => x.Name).ToArray();
-                    //    foreach (var roleName in listRoleName)
-                    //    {
-                    //        await _userManager.RemoveFromRoleAsync(user.Id, roleName);
-                    //        await _userManager.AddToRoleAsync(user.Id, roleName);
-                    //    }
-                    //}
+                    //add role to user
+                    var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
+                    var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
+                    foreach (var user in listUserInGroup)
+                    {
+                        var listRoleName = listRole.Select(x => x.Name).ToArray();
+                        foreach (var roleName in listRoleName)
+                        {
+                            _userManager.RemoveFromRoleAsync(user.Id, roleName);
+                            _userManager.AddToRoleAsync(user.Id, roleName);
+                        }
+                    }
                     return request.CreateResponse(HttpStatusCode.OK, appGroupVM);
                 }
                 catch (NameDuplicatedException dex)
