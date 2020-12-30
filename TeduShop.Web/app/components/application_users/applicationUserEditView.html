@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{resourcePage.EditUserGroup}}</h1>
+                <h1>{{resourcePage.EditUser}}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a ui-sref="home">{{resourceShared.Home}}</a></li>
-                    <li class="breadcrumb-item"><a >{{resourceShared.System}}</a></li>
-                    <li class="breadcrumb-item"><a ui-sref="application_groups">{{resourceShared.UserGroup}}</a></li>
+                    <li class="breadcrumb-item"><a>{{resourceShared.System}}</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="application_users">{{resourceShared.User}}</a></li>
                     <li class="breadcrumb-item active">{{resourceShared.Edit}}</li>
                 </ol>
             </div>
@@ -26,28 +26,57 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmEditApplicationGroup" role="form" ng-submit="onUpdateApplicationGroup()">
+        <form class="form-horizontal" novalidate name="frmEditApplicationUser" role="form" ng-submit="onUpdateApplicationUser()">
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.GroupName}}</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.FullName}}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" required ng-maxlength="250" ng-model="applicationGroup.Name" placeholder="{{resourcePage.GroupName}}">
-                        <span ng-show="frmEditApplicationGroup.name.$error.required" class="text-danger text-error-validation">{{resourcePage.GroupNameIsRequired}}</span>
-                        <span ng-show="frmEditApplicationGroup.name.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.GroupNameIsOnly250CharsLong}}</span>
+                        <input type="text" class="form-control" name="fullname" required ng-maxlength="250" ng-model="applicationUser.FullName" placeholder="{{resourcePage.FullName}}">
+                        <span ng-show="frmEditApplicationUser.fullname.$error.required" class="text-danger text-error-validation">{{resourcePage.FullNameIsRequired}}</span>
+                        <span ng-show="frmEditApplicationUser.fullname.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.FullNameIsOnly250CharsLong}}</span>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Description}}</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Account}}</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" ng-maxlength="500" ng-model="applicationGroup.Description" placeholder="{{resourcePage.Description}}">
-                        <span ng-show="frmEditApplicationGroup.description.$error.maxlength" class="text-danger text-error-validation">{{resourcePage.DescriptionIsOnly250CharsLong}}</span>
+                        <input type="text" class="form-control" name="username" required ng-model="applicationUser.UserName" placeholder="{{resourcePage.Account}}">
+                        <span ng-show="frmEditApplicationUser.username.$error.required" class="text-danger text-error-validation">{{resourcePage.UserNameIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Email}}</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" required ng-model="applicationUser.Email" placeholder="{{resourcePage.Email}}">
+                        <span ng-show="frmEditApplicationUser.email.$error.required" class="text-danger text-error-validation">{{resourcePage.EmailIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.PhoneNumber}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="phonenumber" required ng-model="applicationUser.PhoneNumber" placeholder="{{resourcePage.PhoneNumber}}">
+                        <span ng-show="frmEditApplicationUser.phonenumber.$error.required" class="text-danger text-error-validation">{{resourcePage.PhoneNumberIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.Birthday}}</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="birthday" as-date required ng-model="applicationUser.Birthday">
+                        <span ng-show="frmEditApplicationUser.birthday.$error.required" class="text-danger text-error-validation">{{resourcePage.BirthdayIsRequired}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{resourcePage.UserGroup}}</label>
+                    <div class="col-sm-10">
+                        <label ng-repeat="group in groups" style="margin-left: 15px">
+                            <input type="checkbox" checklist-model="applicationUser.Groups" checklist-value="group" /> {{group.Name}}
+                        </label>
                     </div>
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button ui-sref="application_groups" class="btn btn-default">{{resourceShared.Cancel}}</button>
-                <button type="submit" ng-disabled="frmEditApplicationGroup.$invalid" class="btn btn-success float-right">{{resourceShared.Save}}</button>
+                <button ui-sref="application_users" class="btn btn-default">{{resourceShared.Cancel}}</button>
+                <button type="submit" ng-disabled="frmEditApplicationUser.$invalid" class="btn btn-success float-right">{{resourceShared.Save}}</button>
             </div>
             <!-- /.card-footer -->
         </form>

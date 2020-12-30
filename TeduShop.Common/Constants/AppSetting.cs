@@ -56,6 +56,10 @@ namespace TeduShop.Common.Constants
         /// CurrentLink
         /// </summary>
         public const string AppSetting_CurrentLink = "CurrentLink";
+        /// <summary>
+        /// UserPasswordDefault
+        /// </summary>
+        public const string AppSetting_UserPasswordDefault = "UserPasswordDefault";
 
     }
 }

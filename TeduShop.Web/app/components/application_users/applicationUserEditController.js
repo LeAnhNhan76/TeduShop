@@ -38,6 +38,7 @@
         function onLoadApplicationUserDetail() {
             apiService.get('/api/applicationuser/getbyid?id=' + $stateParams.id, null 
                 , function (result) {
+                    console.log('ree', result.data);
                     $scope.applicationUser = result.data;
                 }
                 , function (error) {
