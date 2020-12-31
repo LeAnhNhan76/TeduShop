@@ -12,6 +12,7 @@ using TeduShop.Common.Exceptions;
 using TeduShop.Model.Models;
 using TeduShop.Service;
 using TeduShop.Web.App_Start;
+using TeduShop.Web.App_Start.Authorize;
 using TeduShop.Web.Infrastructure.Core;
 using TeduShop.Web.Infrastructure.Extensions;
 using TeduShop.Web.Models;
@@ -19,7 +20,7 @@ using TeduShop.Web.Models;
 namespace TeduShop.Web.Api
 {
     [RoutePrefix(Api_ApplicationUser)]
-    //[Authorize(Roles = Constant.Role_Admin)]
+    [Authorize(Roles = Constant.Role_Admin)]
     public class ApplicationUserController : BaseApiController
     {
         #region Properties
@@ -49,7 +50,7 @@ namespace TeduShop.Web.Api
 
         [Route(Route_GetPaging)]
         [HttpGet]
-        //[Authorize(Roles = Constant.Role_ViewUser)]
+        [Authorize(Roles = Constant.Role_ViewUser)]
         public HttpResponseMessage GetPaging(HttpRequestMessage request, string keyword, int page)
         {
             return CreateHttpResponse(request, () =>
@@ -75,7 +76,7 @@ namespace TeduShop.Web.Api
 
         [Route(Route_GetById)]
         [HttpGet]
-        //[Authorize(Roles = Constant.Role_ViewUser)]
+        [Authorize(Roles = Constant.Role_ViewUser)]
         public HttpResponseMessage GetById(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -100,7 +101,7 @@ namespace TeduShop.Web.Api
 
         [HttpPost]
         [Route(Route_Add)]
-        // [Authorize(Roles = Constant.Role_AddUser)]
+        [Authorize(Roles = Constant.Role_AddUser)]
         public async Task<HttpResponseMessage> Add(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -156,7 +157,7 @@ namespace TeduShop.Web.Api
 
         [HttpPut]
         [Route(Route_Update)]
-        //[Authorize(Roles = Constant.Role_UpdateUser)]
+        [Authorize(Roles = Constant.Role_UpdateUser)]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -205,7 +206,7 @@ namespace TeduShop.Web.Api
 
         [HttpDelete]
         [Route(Route_Delete)]
-        // [Authorize(Roles = Constant.Role_DeleteUser)]
+        [Authorize(Roles = Constant.Role_DeleteUser)]
         public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         {
             var appUser = await _userManager.FindByIdAsync(id);

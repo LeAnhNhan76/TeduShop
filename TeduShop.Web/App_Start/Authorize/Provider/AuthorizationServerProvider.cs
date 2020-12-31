@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
@@ -123,10 +124,14 @@ namespace TeduShop.Web.App_Start.Authorize
                 //                            DefaultAuthenticationTypes.ExternalBearer);
                 //context.Validated(identity);
 
-                var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
+                var userRoles = userManager.GetRoles(user.Id);
+                var claimsIdentity = new ClaimsIdentity(DefaultAuthenticationTypes.ExternalBearer);
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserName));
-                claims.Add(new Claim(ClaimTypes.Role, string.Join(",", user.Roles)));
+                foreach (var userRole in userRoles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
                 claims.Add(new Claim("Email", user.Email));
                 claimsIdentity.AddClaims(claims);
 
