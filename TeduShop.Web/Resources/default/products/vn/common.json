@@ -26,5 +26,7 @@
   "HotProduct": "Sản phẩm hot",
   "Tags": "Thẻ",
   "AddImage": "Thêm ảnh",
-  "Quantity": "Số lượng"
+  "Quantity": "Số lượng",
+  "OriginalPrice": "Giá nhập",
+  "OriginalPriceIsRequired": "Giá nhập sản phẩm không được để trống"
 }

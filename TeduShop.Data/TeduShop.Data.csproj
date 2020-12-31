@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202010140446306_InitializeTeduShopDatabase.Designer.cs">
       <DependentUpon>202010140446306_InitializeTeduShopDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012310857125_Alter_Product_Table.cs" />
+    <Compile Include="Migrations\202012310857125_Alter_Product_Table.Designer.cs">
+      <DependentUpon>202012310857125_Alter_Product_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -117,6 +121,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202010140446306_InitializeTeduShopDatabase.resx">
       <DependentUpon>202010140446306_InitializeTeduShopDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012310857125_Alter_Product_Table.resx">
+      <DependentUpon>202012310857125_Alter_Product_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

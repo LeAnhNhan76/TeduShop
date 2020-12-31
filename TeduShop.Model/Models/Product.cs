@@ -49,5 +49,7 @@ namespace TeduShop.Model.Models
         public string Tags { get; set; }
 
         public virtual IEnumerable<ProductTag> ProductTags { get; set; }
+
+        public decimal OriginalPrice { get; set; }
     }
 }

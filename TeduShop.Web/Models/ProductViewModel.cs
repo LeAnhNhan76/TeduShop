@@ -31,5 +31,6 @@ namespace TeduShop.Web.Models
         public int? ViewCount { get; set; }
 
         public string Tags { get; set; }
+        public decimal OriginalPrice { get; set; }
     }
 }

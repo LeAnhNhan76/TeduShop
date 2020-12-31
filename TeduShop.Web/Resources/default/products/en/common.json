@@ -26,5 +26,7 @@
   "HotProduct": "Hot product",
   "Tags": "Tags",
   "AddImage": "Add image",
-  "Quantity": "Quantity"
+  "Quantity": "Quantity",
+  "OriginalPrice": "Original price",
+  "OriginalPriceIsRequired": "Original price is required"
 }

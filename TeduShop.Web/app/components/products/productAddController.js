@@ -14,7 +14,8 @@
         // #region properties
         $scope.product = {
             Status: true,
-            Price: 0
+            Price: 0,
+            OriginalPrice: 0,
         }
         $scope.productCategories = [];
         $scope.path = 'products';
