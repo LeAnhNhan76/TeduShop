@@ -76,34 +76,42 @@ namespace TeduShop.Web.Controllers
         public JsonResult Add(int productId)
         {
             var cart = (List<ShoppingCartViewModel>)Session[Constant.Session_ShoppingCart];
+            var product = _productService.GetById(productId);
             if (cart == null)
             {
                 cart = new List<ShoppingCartViewModel>();
             }
+            var isValidToAddProductToCart = true;
+
             if (cart.Any(x => x.ProductId == productId))
             {
-                foreach (var item in cart)
-                {
-                    if (item.ProductId == productId)
-                    {
-                        item.Quantity += 1;
-                    }
-                }
+                var cartItem = cart.First(x => x.ProductId == productId);
+                if (product.Quantity <= cartItem.Quantity)
+                    isValidToAddProductToCart = false;
+                else
+                    cartItem.Quantity += 1;
             }
             else
             {
-                ShoppingCartViewModel newItem = new ShoppingCartViewModel();
-                newItem.ProductId = productId;
-                var product = _productService.GetById(productId);
-                newItem.Product = Mapper.Map<ProductViewModel>(product);
-                newItem.Quantity = 1;
-                cart.Add(newItem);
+                if (product.Quantity == 0)
+                    isValidToAddProductToCart = false;
+                else
+                {
+                    ShoppingCartViewModel newItem = new ShoppingCartViewModel();
+                    newItem.ProductId = productId;
+                    newItem.Product = Mapper.Map<ProductViewModel>(product);
+                    newItem.Quantity = 1;
+                    cart.Add(newItem);
+                }
             }
-
-            Session[Constant.Session_ShoppingCart] = cart;
+            if (isValidToAddProductToCart)
+            {
+                Session[Constant.Session_ShoppingCart] = cart;
+            }
+            
             return Json(new
             {
-                status = true,
+                status = isValidToAddProductToCart,
                 countInCart = cart.Count
             });
         }
@@ -208,8 +216,10 @@ namespace TeduShop.Web.Controllers
                     }
                     var cart = (List<ShoppingCartViewModel>)Session[Constant.Session_ShoppingCart];
                     List<OrderDetail> orderDetails = new List<OrderDetail>();
+                    var isValidSellProduct = true;
                     foreach (var item in cart)
                     {
+                        isValidSellProduct = _productService.SellProduct(item.ProductId, item.Quantity);
                         var detail = new OrderDetail()
                         {
                             ProductID = item.ProductId,
@@ -218,13 +228,16 @@ namespace TeduShop.Web.Controllers
                         };
                         orderDetails.Add(detail);
                     }
-                    if(_orderService.Create(orderNew, orderDetails))
+                    if (isValidSellProduct)
                     {
-                        Session[Constant.Session_ShoppingCart] = null;
-                        return Json(new
+                        if (_orderService.Create(orderNew, orderDetails))
                         {
-                            status = true
-                        }, JsonRequestBehavior.AllowGet);
+                            Session[Constant.Session_ShoppingCart] = null;
+                            return Json(new
+                            {
+                                status = true
+                            }, JsonRequestBehavior.AllowGet);
+                        }
                     }
                 }
                 return Json(new

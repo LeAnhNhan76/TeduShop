@@ -140,6 +140,11 @@ namespace TeduShop.Web.Infrastructure.Core
         /// </summary>
         public const string Api_ApplicationUser = "api/applicationuser";
 
+        /// <summary>
+        /// api/statistic
+        /// </summary>
+        public const string Api_Statistic = "api/statistic";
+
         #endregion Route Prefix
 
         #region Route
@@ -193,6 +198,11 @@ namespace TeduShop.Web.Infrastructure.Core
         /// testmethod
         /// </summary>
         public const string Route_CheckLogin = "checklogin";
+
+        /// <summary>
+        /// getrevenue
+        /// </summary>
+        public const string Route_GetRevenue = "getrevenue";
 
         #endregion Route
 

@@ -120,6 +120,23 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="javascript:void(0);" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                {{resourceShared.Statistic}}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a ui-sref="statistic_revenue" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{resourceShared.RevenueStatistic}}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="javascript:void(0);" class="nav-link">
                             <i class="fa fa-users" aria-hidden="true"></i> &nbsp;
                             <p>
                                 {{resourceShared.System}}

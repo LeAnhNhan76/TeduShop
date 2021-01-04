@@ -47,6 +47,8 @@ namespace TeduShop.Service
 
         Tag GetTagById(string tagId);
 
+        bool SellProduct(int id, int quantity);
+
         void Save();
     }
 
@@ -285,6 +287,14 @@ namespace TeduShop.Service
                 }
             }
             _unitOfWork.Commit();
+        }
+
+        public bool SellProduct(int id, int quantity)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product == null || product.Quantity < quantity) return false;
+            product.Quantity -= quantity;
+            return true;
         }
 
         #endregion Methods

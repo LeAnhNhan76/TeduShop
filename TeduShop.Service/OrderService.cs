@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TeduShop.Common.ViewModels;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
 using TeduShop.Model.Models;
@@ -11,6 +12,7 @@ namespace TeduShop.Service
     public interface IOrderService
     {
         bool Create(Order order, List<OrderDetail> orderDetails);
+        
     }
 
     #endregion Interface

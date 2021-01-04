@@ -1,4 +1,7 @@
-﻿using TeduShop.Data.Infrastructure;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using TeduShop.Common.ViewModels;
+using TeduShop.Data.Infrastructure;
 using TeduShop.Model.Models;
 
 namespace TeduShop.Data.Repositories
@@ -7,6 +10,7 @@ namespace TeduShop.Data.Repositories
 
     public interface IOrderRepository : IRepository<Order>
     {
+        IEnumerable<RevenuesStatisticViewModel> GetRevenuesStatistic(string fromDate, string toDate);
     }
 
     #endregion Interface
@@ -16,14 +20,27 @@ namespace TeduShop.Data.Repositories
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
         #region Constructors
+
         public OrderRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Methods
-        #endregion
 
+        public IEnumerable<RevenuesStatisticViewModel> GetRevenuesStatistic(string fromDate, string toDate)
+        {
+            var parameters = new object[]
+            {
+                new SqlParameter("@fromDate", fromDate),
+                new SqlParameter("@toDate", toDate)
+            };
+
+            return DbContext.Database.SqlQuery<RevenuesStatisticViewModel>("GetRevenuesStatisticSP @fromDate, @toDate", parameters);
+        }
+
+        #endregion Methods
     }
 
     #endregion Implement
