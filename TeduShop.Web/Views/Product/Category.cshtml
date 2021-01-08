@@ -4,29 +4,33 @@
 @model TeduShop.Web.Infrastructure.Core.PaginationSet<TeduShop.Web.Models.ProductViewModel>
 
 @{
-    ViewBag.Title = Constant.Title_Category;
-    Layout = Constant.View_Layouts;
     var category = (TeduShop.Web.Models.ProductCategoryViewModel)ViewBag.Category;
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? category.Name : string.Concat(category.Name, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString());
+    ViewBag.MetaKeyword = pageIndex == 1 ? category.MetaKeyword : string.Concat(category.MetaKeyword, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString());
+    ViewBag.MetaDescription = pageIndex == 1 ? category.MetaDescription : string.Concat(category.MetaDescription, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString());
+    Layout = Constant.View_Layouts;
+
 }
 
 <div class="women-product">
+    <div class="w_content">
+        <div class="women">
+            <a href="/@(category.Alias).pc-@(category.ID).html"><h4>@category.Name - <span style="text-transform: lowercase">@Model.TotalCount @ResourceManagement.GetResourceText(Constant.Resource_Product)</span> </h4></a>
+            <ul class="w_nav">
+                <li>Sort : </li>
+                <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.New)">new </a></li> |
+                <li><a class="active" href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Popular)">popular</a></li> |
+                <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Discount)">discount</a></li> |
+                <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Price)">price: Low High </a></li>
+                <div class="clearfix"> </div>
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
     @if (Model.Count > 0)
     {
-        <div class="w_content">
-            <div class="women">
-                <a href="/@(category.Alias).pc-@(category.ID).html"><h4>@category.Name - <span style="text-transform: lowercase">@Model.TotalCount @ResourceManagement.GetResourceText(Constant.Resource_Product)</span> </h4></a>
-                <ul class="w_nav">
-                    <li>Sort : </li>
-                    <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.New)">new </a></li> |
-                    <li><a class="active" href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Popular)">popular</a></li> |
-                    <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Discount)">discount</a></li> |
-                    <li><a href="?@Constant.Parameter_Page@Model.Page&@Constant.Parameter_Sort@((byte)AppValue.SortProduct.Price)">price: Low High </a></li>
-                    <div class="clearfix"> </div>
-                </ul>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-
         <div class="grid-product">
             @foreach (var product in Model.Items)
             {

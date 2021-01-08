@@ -56,5 +56,17 @@ namespace TeduShop.Common.Constants
         /// BIG_SHOPE_ClientSecret
         /// </summary>
         public const string Public_ClientSecret = "Public_ClientSecret";
+        /// <summary>
+        /// HomeTitle
+        /// </summary>
+        public const string HomeTitle = "HomeTitle";
+        /// <summary>
+        /// HomeMetaKeyword
+        /// </summary>
+        public const string HomeMetaKeyword = "HomeMetaKeyword";
+        /// <summary>
+        /// HomeMetaDescription
+        /// </summary>
+        public const string HomeMetaDescription = "HomeMetaDescription";
     }
 }

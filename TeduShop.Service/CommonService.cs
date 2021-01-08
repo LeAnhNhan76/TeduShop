@@ -13,6 +13,8 @@ namespace TeduShop.Service
     {
         Footer GetFooter();
 
+        IEnumerable<SystemConfig> GetSystemConfigsByMultiCodes(List<string> codes);
+
         IEnumerable<Slide> GetSlide();
     }
 
@@ -26,16 +28,19 @@ namespace TeduShop.Service
 
         private IFooterRepository _footerRepository;
         private ISlideRepository _slideRepository;
+        private ISystemConfigRepository _systemConfigRepository;
         private IUnitOfWork _unitOfWork;
 
         #endregion Properties
 
         #region Constructors
 
-        public CommonService(IFooterRepository footerRepository, ISlideRepository slideRepository, IUnitOfWork unitOfWork)
+        public CommonService(IFooterRepository footerRepository, ISlideRepository slideRepository
+            , ISystemConfigRepository systemConfigRepository, IUnitOfWork unitOfWork)
         {
             this._footerRepository = footerRepository;
             this._slideRepository = slideRepository;
+            this._systemConfigRepository = systemConfigRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -51,6 +56,11 @@ namespace TeduShop.Service
         public IEnumerable<Slide> GetSlide()
         {
             return _slideRepository.GetMulti(x => x.Status == true);
+        }
+
+        public IEnumerable<SystemConfig> GetSystemConfigsByMultiCodes(List<string> codes)
+        {
+            return _systemConfigRepository.GetMulti(x => codes.Contains(x.Code));
         }
 
         #endregion Methods

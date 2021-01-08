@@ -2,7 +2,9 @@
 @using TeduShop.Web.Common
 @model TeduShop.Web.Models.Extensions.HomeViewModel
 @{
-    ViewBag.Title = Constant.Title_Index;
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
     Layout = Constant.View_Layouts;
     var lastLatestProduct = Model.LatestProducts.LastOrDefault();
     var lastTopSaleProduct = Model.TopSaleProducts.LastOrDefault();

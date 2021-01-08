@@ -29,6 +29,7 @@
             CreateFooterSample(context);
             CreateContactDetail(context);
             CreateClient(context);
+            CreateConfigTitle(context);
         }
 
         private void CreateUserSample(TeduShopDbContext context)
@@ -213,6 +214,35 @@
                 context.Clients.AddRange(clients);
                 context.SaveChanges();
             }
+        }
+
+        private void CreateConfigTitle(TeduShopDbContext context)
+        {
+            if(!context.SystemConfigs.Any(x => x.Code == "HomeTitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chu TEDU SHOP"
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chu TEDU SHOP"
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaDescription",
+                    ValueString = "Trang chu TEDU SHOP"
+                });
+            }
+            context.SaveChanges();
         }
     }
 }

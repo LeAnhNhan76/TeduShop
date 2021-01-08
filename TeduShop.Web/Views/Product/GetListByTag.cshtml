@@ -6,7 +6,10 @@
 
 @{
     var tag = (TagViewModel)ViewBag.Tag;
-    ViewBag.Title = ResourceManagement.GetResourceText(Constant.Resource_SearchResultForTag) + tag.Name;
+    var pageIndex = Model.Page;
+    ViewBag.Title = ResourceManagement.GetResourceText(Constant.Resource_SearchResultForTag) + (pageIndex == 1 ? tag.Name : string.Concat(tag.Name, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString()));
+    ViewBag.MetaKeyword = ResourceManagement.GetResourceText(Constant.Resource_SearchResultForTag) + (pageIndex == 1 ? tag.Name : string.Concat(tag.Name, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString()));
+    ViewBag.MetaDescription = ResourceManagement.GetResourceText(Constant.Resource_SearchResultForTag) + (pageIndex == 1 ? tag.Name : string.Concat(tag.Name, "-", ResourceManagement.GetResourceText(Constant.Resource_Page), " ", pageIndex.ToString()));
     Layout = Constant.View_Layouts;
 }
 

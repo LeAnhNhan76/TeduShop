@@ -396,5 +396,10 @@
         /// Follow
         /// </summary>
         public const string Resource_Follow = "Follow";
+
+        /// <summary>
+        /// Page
+        /// </summary>
+        public const string Resource_Page = "Page";
     }
 }

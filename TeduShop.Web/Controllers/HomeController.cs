@@ -53,12 +53,28 @@ namespace TeduShop.Web.Controllers
             var topSaleProducts = _productService.GetHotProduct(numTopSaleProduct).ToList();
             var topSaleProductsVM = Mapper.Map<List<ProductViewModel>>(topSaleProducts);
 
+            var systemConfigCodes = new List<string>() { Constant.HomeTitle, Constant.HomeMetaKeyword, Constant.HomeMetaDescription };
+
+            var systemConfigsShowHomePage = _commonService.GetSystemConfigsByMultiCodes(systemConfigCodes);
+
             var model = new HomeViewModel()
             {
                 Slides = slideVM,
                 LatestProducts = latestProductsVM,
                 TopSaleProducts = topSaleProductsVM
             };
+
+            try
+            {
+                model.Title = systemConfigsShowHomePage.FirstOrDefault(x => x.Code == Constant.HomeTitle)?.ValueString;
+                model.MetaKeyword = systemConfigsShowHomePage.FirstOrDefault(x => x.Code == Constant.HomeMetaKeyword)?.ValueString;
+                model.MetaDescription = systemConfigsShowHomePage.FirstOrDefault(x => x.Code == Constant.HomeMetaDescription)?.ValueString;
+            }
+            catch
+            {
+
+            }
+
             return View(model);
         }
         
