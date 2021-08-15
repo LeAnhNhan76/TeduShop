@@ -7240,7 +7240,6 @@
     <Content Include="Assets\admin\libs\mustache\.gitmodules" />
     <Content Include="Assets\admin\libs\mustache\.travis.yml" />
     <Content Include="Assets\admin\libs\mustache\.zuul.yml" />
-    <Content Include="Assets\admin\libs\mustache\bin\mustache" />
     <Content Include="Assets\admin\libs\mustache\CHANGELOG.md" />
     <Content Include="Assets\admin\libs\mustache\hooks\install-hooks.sh" />
     <Content Include="Assets\admin\libs\mustache\hooks\pre-commit" />
@@ -7339,8 +7338,6 @@
     <Content Include="Assets\admin\libs\mustache\wrappers\mootools\mustache.js.pre" />
     <Content Include="Assets\admin\libs\mustache\wrappers\qooxdoo\mustache.js.post" />
     <Content Include="Assets\admin\libs\mustache\wrappers\qooxdoo\mustache.js.pre" />
-    <Content Include="Assets\admin\libs\mustache\wrappers\yui3\mustache.js.post" />
-    <Content Include="Assets\admin\libs\mustache\wrappers\yui3\mustache.js.pre" />
     <Content Include="Assets\admin\libs\numeral\.bower.json" />
     <Content Include="Assets\admin\libs\numeral\.gitignore" />
     <Content Include="Assets\admin\libs\numeral\.travis.yml" />
