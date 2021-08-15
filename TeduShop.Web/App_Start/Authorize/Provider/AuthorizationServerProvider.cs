@@ -123,10 +123,12 @@ namespace TeduShop.Web.App_Start.Authorize
                 //                            DefaultAuthenticationTypes.ExternalBearer);
                 //context.Validated(identity);
 
+                var userRoles = await userManager.GetRolesAsync(user.Id);
+
                 var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserName));
-                claims.Add(new Claim(ClaimTypes.Role, string.Join(",", user.Roles)));
+                claims.Add(new Claim(ClaimTypes.Role, string.Join(",", userRoles)));
                 claims.Add(new Claim("Email", user.Email));
                 claimsIdentity.AddClaims(claims);
 

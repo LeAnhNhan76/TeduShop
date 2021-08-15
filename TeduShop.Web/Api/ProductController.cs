@@ -37,6 +37,7 @@ namespace TeduShop.Web.Api
 
         [Route(Route_GetAll)]
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -53,6 +54,7 @@ namespace TeduShop.Web.Api
 
         [Route(Route_GetPaging)]
         [HttpGet]
+        [Authorize(Roles = "Admin, User")]
         public HttpResponseMessage GetPaging(HttpRequestMessage request, string keyword, int page)
         {
             return CreateHttpResponse(request, () =>
