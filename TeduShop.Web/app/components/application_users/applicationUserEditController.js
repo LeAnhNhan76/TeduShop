@@ -50,7 +50,6 @@
         function onUpdateApplicationUser() {
             apiService.put('/api/applicationuser/update', $scope.applicationUser
                 , function (result) {
-                    console.log(result);
                     notificationService.displaySuccess(result.data.Name + ' ' + $scope.resourceShared.Updated + '.');
                     $state.go('application_users');
                 }
