@@ -66,7 +66,6 @@
                     //    notificationService.displayWarning($scope.resourceShared.NoRecordFound);
                     //}
                     $scope.products = result.data.Items;
-                    console.log('$scope.products', $scope.products);
                     $scope.page = result.data.Page;
                     $scope.pagesCount = result.data.TotalPages;
                     $scope.totalCount = result.data.TotalCount;
