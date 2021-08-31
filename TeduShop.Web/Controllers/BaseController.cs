@@ -52,7 +52,7 @@ namespace TeduShop.Web.Controllers
 
                 HttpCookie langCookie = Request.Cookies[Constant.Cookie_Language];
                 var langCode = langCookie.Value;
-                if (!ResourceManagement.languages.ToList().Contains(langCode))
+                if (!ResourceManagement.languages.Contains(langCode))
                 {
                     CookieHelper.SetCookieLanguageDefault();
                     langCode = App.AppLanguageDefault;

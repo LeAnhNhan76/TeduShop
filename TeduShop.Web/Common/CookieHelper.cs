@@ -9,7 +9,7 @@ namespace TeduShop.Web.Common
         {
             HttpCookie _langCookie = new HttpCookie(Constant.Cookie_Language);
             _langCookie.Value = App.AppLanguageDefault;
-            System.Web.HttpContext.Current.Response.Cookies.Add(_langCookie);
+            HttpContext.Current.Response.Cookies.Add(_langCookie);
         }
     }
 }

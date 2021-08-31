@@ -42,7 +42,6 @@ namespace TeduShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                // abc
                 var listProduct = _productService.GetAll().ToList();
 
                 var listProductVM = Mapper.Map<List<ProductViewModel>>(listProduct);
